@@ -1,0 +1,73 @@
+* {
+    /* outline: dotted 2px red; */
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-weight: normal;
+    text-decoration: none;
+    font-style: normal;
+}
+
+body {
+    color: #000;
+    font-family: arial, "helvetica neue", helvetica, sans-serif;
+    font-size: 34px;
+}
+
+select {
+    width: 200px;
+}
+
+table thead td {
+    font-weight: bold;
+}
+
+table td {
+    padding-right: 10px;
+}
+
+
+input{
+    float: right;
+    font-size: 20px;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    border: 1px solid #C2C2C2;
+    box-shadow: 1px 1px 4px #EBEBEB;
+    -moz-box-shadow: 1px 1px 4px #EBEBEB;
+    -webkit-box-shadow: 1px 1px 4px #EBEBEB;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    padding: 7px;
+    outline: none;
+}
+label{
+    width: 560px;
+    display: block;  
+    margin: 10px 0px 15px;
+}
+.wrapper{
+    width: 560px;
+}
+h1{
+    margin-top: 50px;
+}
+
+/* <div class="form-style-2">
+<div class="form-style-2-heading">Provide your information</div>
+<form action="" method="post">
+<label for="field1"><span>Name <span class="required">*</span></span><input type="text" class="input-field" name="field1" value="" /></label>
+<label for="field2"><span>Email <span class="required">*</span></span><input type="text" class="input-field" name="field2" value="" /></label>
+<label><span>Telephone</span><input type="text" class="tel-number-field" name="tel_no_1" value="" maxlength="4" />-<input type="text" class="tel-number-field" name="tel_no_2" value="" maxlength="4"  />-<input type="text" class="tel-number-field" name="tel_no_3" value="" maxlength="10"  /></label>
+<label for="field4"><span>Regarding</span><select name="field4" class="select-field">
+<option value="General Question">General</option>
+<option value="Advertise">Advertisement</option>
+<option value="Partnership">Partnership</option>
+</select></label>
+<label for="field5"><span>Message <span class="required">*</span></span><textarea name="field5" class="textarea-field"></textarea></label>
+
+<label><span>&nbsp;</span><input type="submit" value="Submit" /></label>
+</form>
+</div> */

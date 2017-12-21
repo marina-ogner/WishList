@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        {% load static %}
+        {% load index %}
+        {% load get_item %}
+        {% load define %}
+<!-- The line above tells Django to be ready to listen for static files -->
+        <link rel="stylesheet" href="/static/login_registration_app/css/style.css">
+
+<!--        <link rel="stylesheet" href="{% static 'login_registration_app/css/style.css' %}" media="screen" title="no title"  charset="utf-8"> -->
+<!-- Put the static files in the static folder inside your app.  Django collects files within all static folders and puts them within a single folder -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="{% static 'scripts/scripts.js' %}"></script>
+        <title>login_registration_app</title>
+    </head>
+    <body>    
+        <div class = "wrapper">
+            <form action="/registration_validator" method="POST">
+                {% csrf_token %}
+                <h1>Registration</h1>
+                {% if messages %}
+                <div class="messages">
+                    {% for message in messages %}
+                    <p{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>
+                    {% endfor %}
+                </div>
+                {% endif %}
+                <label for="first_name">First Name: <input type="text" name='first_name' id="first_name"></label>
+                <label for="username">Username: <input type="text" name='username' id="username"></label>
+                <label for="email">Email: <input type="email" name='email' id="email"></label>
+                <label for="password">Password: <input type="password" name='password'id="password"> </label>
+                <p>*Password should be at least 8 characters</p>
+                <label for="password_confirm">PW Confirmation: <input type="password" name='password_confirm'id="password_confirm"></label>
+                <label for="date_hired">Date Hired: <input type="date" name = "date_hired"></label>
+                <p></p> 
+                <input type="submit" value="Register">
+            </form>
+            <p></p> 
+            <p></p> 
+            <p></p> 
+            <form action="/login_validator" method="POST">
+                {% csrf_token %}
+                
+                <h1>Login:</h1>
+                <label for="username">Username: <input type="text" name='username' id="username"></label>
+                <label for="password">Password: <input type="password" name='password'id="password"></label>
+                <input type="submit" value="Login">
+
+            </form>
+        </div>
+    </body>
+</html>
