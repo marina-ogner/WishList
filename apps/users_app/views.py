@@ -17,8 +17,6 @@ def index(request):
             "personal_items" : Item.objects.filter(creator = User.objects.get(id=request.session['user_id']))|Item.objects.filter(joiner = User.objects.get(id=request.session['user_id'])),
             "other_items" : Item.objects.all().exclude(Q(creator = User.objects.get(id=request.session['user_id']))|Q(joiner = User.objects.get(id=request.session['user_id']))),
         }
-
-    # print request.session['user_id']
     return render(request, 'users_app/users.html', context)
 
 def clear(request):
@@ -39,40 +37,32 @@ def create(request):
         u1 = User.objects.get(id=request.session['user_id'])
         i1 = Item(name = request.POST["name"], creator = u1)
         i1.save()
-        return redirect('/wish_items')
-        
-
+        return redirect('/dashboard')
+  
 def join(request, item_id):
     u1 = User.objects.get(id=request.session['user_id'])
     i1 = Item.objects.get(id=item_id)
     i1.joiner.add(u1)
-    return redirect('/wish_items')
+    return redirect('/dashboard')
 
 def delete(request, item_id):
     i1 = Item.objects.get(id=item_id)
     i1.delete()
-    return redirect('/wish_items')
+    return redirect('/dashboard')
 
 def delete_from_list(request, item_id):
     i1 = Item.objects.get(id=item_id)
     u1 = User.objects.get(id=request.session['user_id'])
     i1.joiner.remove(u1)
-    return redirect('/wish_items')
+    return redirect('/dashboard')
 
 def about_item(request, item_id):
     al = Item.objects.get(id=item_id).joiner.all()
-    # print al
     me = Item.objects.get(id=item_id).joiner.filter(id=request.session['user_id'])
-    # print me
     result = al.difference(me)
-
     context = {
         "about_item" : Item.objects.get(id=item_id),
         "other_users" : result,
     }
     return render(request, 'users_app/about_item.html', context)
 
-
-
-
-#Trip.objects.all().joiner.values()

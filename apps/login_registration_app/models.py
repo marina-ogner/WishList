@@ -24,12 +24,8 @@ class UserManager(models.Manager):
             return errors
         return user
 
-
     def registration_validator(self, post_data):
         errors = {}
-        # for field, value in post_data.iteritems():
-        #     if len(value) < 1:
-        #         errors[field] = "{} field is reqired".format(field.replace('_', ' '))
         if len(post_data['date_hired']) < 1:
             errors["date_hired"] = "!!! Date Hired cannot be empty"
         else: 
@@ -37,15 +33,12 @@ class UserManager(models.Manager):
             date_hired = datetime.strptime(str(post_data["date_hired"]),'%Y-%m-%d').strftime("%Y-%m-%d") 
             if date_hired > today:
                 errors["date_hired2"] = "!!! Date hired should be less than today"
-        print post_data["date_hired"]
-        print date_hired
         if len(post_data['first_name']) < 3:
             errors["first_name"] = "!!! First name should be at least 3 characters"
         if len(post_data['username']) < 3:
             errors["username"] = "!!! User name should be at least 3 characters"
         if len(post_data['password']) < 8:
             errors["password"] = "!!! Password should be more than 7 characters"
-
         if re.search('[A-Za-z]', post_data['password']) is None:
             errors["password"] = "!!! Password must have at least characters"  
         # if not re.match(NAME_REGEX, post_data['password']):
@@ -56,10 +49,8 @@ class UserManager(models.Manager):
             errors["password"] = "!!! Passwords do not match"
         if len(User.objects.filter(email=post_data['email'])) > 0:  # or 1 when use get, not filter
             errors['email'] = "!!! Email already in use"
-
         if not errors:
             hashed = bcrypt.hashpw((post_data['password'].encode()), bcrypt.gensalt(5))
-
             new_user = self.create(
                 first_name=post_data['first_name'],
                 username=post_data['username'],

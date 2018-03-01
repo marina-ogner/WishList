@@ -15,26 +15,23 @@ def login_validator(request):
     if type(result)==dict:
         for tag, error in result.iteritems():
             messages.error(request, error, extra_tags=tag) # or just error(request, message, extra_tags=field)
-        return redirect('/')
+        return redirect('/main')
     else:
-        print result
         request.session['user_id'] = result.id
         request.session['first_name'] = result.first_name
-        return redirect('/wish_items')
-        return redirect('/wish_items')
+        return redirect('/dashboard')
 
 def registration_validator(request):
     result = User.objects.registration_validator(request.POST)
     if type(result) == dict:
         for tag, error in result.iteritems():
             messages.error(request, error, extra_tags=tag) # or just error(request, message, extra_tags=field)
-        return redirect('/')
+        return redirect('/main')
     else:
-        print result
         request.session['user_id'] = result.id
         request.session['first_name'] = result.first_name
         messages.success(request, "Successfully registered!")
-        return redirect('/wish_items')
+        return redirect('/dashboard')
 
 def index(request):
     context = {
@@ -45,6 +42,6 @@ def index(request):
 def clear(request):
     for key in request.session.keys():
         del request.session[key]
-    return redirect('/')
+    return redirect('/main')
 
 

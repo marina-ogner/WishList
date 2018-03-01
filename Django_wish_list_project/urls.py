@@ -20,6 +20,7 @@ from django.contrib import admin
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^',include('apps.login_registration_app.urls')),
+    url(r'^main/',include('apps.login_registration_app.urls')),
+    url(r'^dashboard/',include('apps.users_app.urls')),
     url(r'^wish_items/',include('apps.users_app.urls')),   
 ]
